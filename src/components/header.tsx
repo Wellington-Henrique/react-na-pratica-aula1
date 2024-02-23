@@ -68,8 +68,12 @@ export function Header() {
 
       <div className="flex items-center gap-3">
         <div className="flex flex-col items-end gap-0.5">
-          <span className="text-sm font-medium">Wellingon Henrique</span>
-          <span className="text-xs text-zinc-400">git: wellington-henrique</span>
+          <span className="text-sm font-medium">Wellington Henrique</span>
+          <a 
+            className="text-xs text-zinc-400"
+            href='https://github.com/Wellington-Henrique?tab=repositories' 
+            target='_blank'
+          >wellington-henrique</a>
         </div>
         <img
           src="https://github.com/diego3g.png"
