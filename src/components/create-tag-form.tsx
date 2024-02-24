@@ -1,10 +1,11 @@
-import { Check, Loader2, X } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+import { Check, Loader2, X } from 'lucide-react'
 import { Button } from "./ui/button";
 import * as Dialog from '@radix-ui/react-dialog'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const createTagSchema = z.object({
   title: z.string().min(3, { message: 'Minimum 3 characters.' }),
@@ -63,13 +64,13 @@ export function CreateTagForm() {
         <label className="text-sm font-medium block" htmlFor="title">Tag name</label>
         <input 
           {...register('title')}
-          id="name" 
+          id="title" 
           type="text" 
           className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-800/50 w-full text-sm"
         />
-        {formState.errors?.title && (
-          <p className="text-sm text-red-400">{formState.errors.title.message}</p>
-        )}
+
+        {formState.errors?.title &&
+        <p className="text-sm text-red-400">{formState.errors.title.message}</p>}
       </div>
 
       <div className="space-y-2">
@@ -90,8 +91,15 @@ export function CreateTagForm() {
             Cancel
           </Button>
         </Dialog.Close>
-        <Button disabled={formState.isSubmitting} className="bg-teal-400 text-teal-950" type="submit">
-          {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-3" />}
+
+        <Button 
+          disabled={formState.isSubmitting} 
+          className="bg-teal-400 text-teal-950" 
+          type="submit"
+        >
+          {formState.isSubmitting ? 
+          <Loader2 className="size-3 animate-spin" /> 
+          : <Check className="size-3" />}
           Save
         </Button>
       </div>
